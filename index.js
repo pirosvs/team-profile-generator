@@ -88,6 +88,12 @@ const engineerQuestions = [
         type: "input",
         name: "github",
         message: "Please enter github username"
+    },
+
+    {
+        type: "input",
+        name: "continue",
+        message: "Would you like to add another team member?"
     }
 ];
 
@@ -115,15 +121,21 @@ const internQuestions = [
         type: "input",
         name: "schoolName",
         message: "Please enter intern school name"
+    },
+
+    {
+        type: "input",
+        name: "continue",
+        message: "Would you like to add another team member?"
     }
 ];
 
 const selectMember = () => {
     if (data.continue.val == "yes") {
-        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add?"})
-        // if (response.member.val == "engineer") {
+        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add?", choices: "Engineer", "Intern"})
+        // if (response.member.val == "Engineer") {
             // inquirer.prompt(engineerQuestions)
-        // } else if (response.member.val == "intern") {
+        // } else if (response.member.val == "Intern") {
             // inquirer.prompt(internQuestions)
         // }
     } else if (data.continue.val == "no") {
