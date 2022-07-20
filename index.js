@@ -1,6 +1,9 @@
 // Require inquirer and fs so that we can ask questions in the terminal and create a file
 const fs = require('fs');
 const inquirer = require('inquirer');
+const Manager = require('./lib/manager');
+const Engineer = require('./lib/engineer');
+const Intern = require('./lib/intern');
 
 // Creates our class Employee 
 class Employee {
@@ -11,7 +14,7 @@ class Employee {
     }
 
     getName() {
-        name = this.name;
+        name = data.name;
     }
 
     getId() {
@@ -52,6 +55,12 @@ const managerQuestions = [
         type: "input",
         name: "officeNum",
         message: "Please enter manager office number"
+    },
+
+    {
+        type: "input",
+        name: "continue",
+        message: "Would you like to add another team member?"
     }
 ];
 
@@ -109,20 +118,40 @@ const internQuestions = [
     }
 ];
 
-// List of questions asked by inquirer
-inquirer
-    .prompt([
-        {
-            type: "input",
-            name: "1",
-            message: "message"
-        }
-    ])
+const selectMember = () => {
+    if (data.continue.val == "yes") {
+        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add?"})
+        // if (response.member.val == "engineer") {
+            // inquirer.prompt(engineerQuestions)
+        // } else if (response.member.val == "intern") {
+            // inquirer.prompt(internQuestions)
+        // }
+    } else if (data.continue.val == "no") {
+        // exit
+    } else {
+        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
+    }
+}
+
+// If the user has more team members, keep going, otherwise exit the prompts
+inquirer.when(continue) or prompts.next(internQuestions)
 
 // Writes file
 function writeToFile(data) {
     const generateHTMLContent = generateHTML(data);
-    fs.writeFile(`${data.github.toLowerCase().split(' ').join('')}index.html`, generateHTMLContent, (err) =>
+    fs.writeFile(`team-index.html`, generateHTMLContent, (err) =>
       err ? console.log(err) : console.log('Successfully created readme.md!')
     );
 }
+
+// Function to initialize app
+function init() 
+{
+  inquirer
+  .prompt(managerQuestions)
+  //.prompt( the thing they choose)
+  .then(writeToFile);
+}
+
+// Function call to initialize app
+init();
