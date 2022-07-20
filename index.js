@@ -1,34 +1,14 @@
 // Require inquirer and fs so that we can ask questions in the terminal and create a file
 const fs = require('fs');
 const inquirer = require('inquirer');
-const Manager = require('./lib/manager');
-const Engineer = require('./lib/engineer');
-const Intern = require('./lib/intern');
+const Employee = require('./lib/employee.js');
+const Manager = require('./lib/manager.js');
+const Engineer = require('./lib/engineer.js');
+const Intern = require('./lib/intern.js');
+const generateHTML = require('./dist/generateHTML.js');
 
-// Creates our class Employee 
-class Employee {
-    constructor(name, id, email) {
-        this.name = name;
-        this.id = id;
-        this.email = email;
-    }
-
-    getName(data) {
-        name = data.name;
-    }
-
-    getId(data) {
-
-    }
-
-    getEmail(data) {
-
-    }
-
-    getRole(data) {
-        return "Employee";
-    }
-}
+// var steve = new Employee("Steve", 12345, "steve@steve.org")
+// var name = steve.getName();
 
 // Questions to use for inquirer -- perhaps consolidate the first 3 of each?
 // team manager’s name, employee ID, email address, and office number
@@ -145,21 +125,52 @@ const selectMember = () => {
     }
 }
 
+var allEmployees = []
+
+// create employee from our data
+function addManagerToAllEmployees(data)
+{
+    var manager = new Manager(data.name, data.id, data.email, data.officeNum);
+    allEmployees.push(manager);
+}
+
 // Writes file
-function writeToFile(data) {
-    const generateHTMLContent = generateHTML(data);
+function writeToFile() {
+    const generateHTMLContent = generateHTML(allEmployees);
     fs.writeFile(`team-index.html`, generateHTMLContent, (err) =>
       err ? console.log(err) : console.log('Successfully created readme.md!')
     );
 }
 
+function getsAllEmployeesFromUser()
+{
+   addAnotherEmployee = true
+   // ask the user if they want to enter another employe
+   
+   while(addAnotherEmployee == true) {
+       // ask the user for what kind of employee
+       // do the inquirer and add the employee to our list
+      // 
+      // ask the user if they want to enter another employee
+   }
+
+
+    return allEmployees;
+}
+
 // Function to initialize app
 function init() 
 {
+  // Ask the user for manager info
+  // add that manager to the list
+  // 
+  //
   inquirer
   .prompt(managerQuestions)
-  //.selectMember()
-  .then(writeToFile);
+  .then(addManagerToAllEmployees)
+
+  getsAllEmployeesFromUser()
+  writeToFile()
 }
 
 // Function call to initialize app
