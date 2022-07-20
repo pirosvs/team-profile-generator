@@ -13,19 +13,19 @@ class Employee {
         this.email = email;
     }
 
-    getName() {
+    getName(data) {
         name = data.name;
     }
 
-    getId() {
+    getId(data) {
 
     }
 
-    getEmail() {
+    getEmail(data) {
 
     }
 
-    getRole() {
+    getRole(data) {
         return "Employee";
     }
 }
@@ -131,22 +131,19 @@ const internQuestions = [
 ];
 
 const selectMember = () => {
-    if (data.continue.val == "yes") {
+    if (data.continue.toLowerCase() == "yes") {
         // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add?", choices: "Engineer", "Intern"})
         // if (response.member.val == "Engineer") {
             // inquirer.prompt(engineerQuestions)
         // } else if (response.member.val == "Intern") {
             // inquirer.prompt(internQuestions)
         // }
-    } else if (data.continue.val == "no") {
+    } else if (data.continue.toLowerCase() == "no") {
         // exit
     } else {
         // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
     }
 }
-
-// If the user has more team members, keep going, otherwise exit the prompts
-inquirer.when(continue) or prompts.next(internQuestions)
 
 // Writes file
 function writeToFile(data) {
@@ -161,7 +158,7 @@ function init()
 {
   inquirer
   .prompt(managerQuestions)
-  //.prompt( the thing they choose)
+  //.selectMember()
   .then(writeToFile);
 }
 
