@@ -13,5 +13,11 @@ describe("Engineer", () => {
         // expect(engineer.email).toEqual("damiensmail@mail.com");
         expect(engineer.github).toEqual("pirosvs");
       });
+
+      it("should throw an error if not provided a github username", () => {
+        const cb = () => new Employee("Damien", 345, "damiensmail@mail.com");
+        const err = new Error("Expected parameter 'github' to be a non-empty string");
+        expect(cb).toThrowError(err);
+      });
     })
 })
