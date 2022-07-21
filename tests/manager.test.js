@@ -21,7 +21,7 @@ describe("Manager", () => {
       });
 
       it("should throw an error if 'officeNumber' is not a number", () => {
-        const cb = () => new Child("Damien", 345, "damiensmail@mail.com", "678");
+        const cb = () => new Employee("Damien", 345, "damiensmail@mail.com", "678");
         const err = new Error("Expected parameter 'officeNumber' to be a non-negative number");
   
         expect(cb).toThrowError(err);

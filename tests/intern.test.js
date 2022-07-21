@@ -5,7 +5,7 @@ describe("Intern", () => {
     // Test for our new case school when initializing a new Intern object
     describe("Initialization", () => {
       it("should create an object with a name, id, email, and school if provided valid arguments", () => {
-        const intern = new Intern("Damien", 345, "damiensmail@mail.com", 678);
+        const intern = new Intern("Damien", 345, "damiensmail@mail.com", "Mills College");
   
         // Verify that the new object has the correct properties
         // expect(intern.name).toEqual("Damien");
