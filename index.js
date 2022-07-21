@@ -149,9 +149,12 @@ function getsAllEmployeesFromUser()
    
    while(addAnotherEmployee == true) {
        // ask the user for what kind of employee
+        // inquirer.prompt(employeeSelect)
+        // if (response === "engineer") {inquirer.prompt(engineerQuestions)}
        // do the inquirer and add the employee to our list
-      // 
+      // addEngineerToAllEmployees(response)
       // ask the user if they want to enter another employee
+      // inquirer.prompt(continue)
    }
 
 
