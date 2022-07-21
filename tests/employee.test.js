@@ -4,7 +4,6 @@ describe("Employee", () => {
     // Test for all use cases when initializing a new Employee object
     describe("Initialization", () => {
       it("should create an object with a name, id, email, and role if provided valid arguments", () => {
-        // Act
         const employee = new Employee("Damien", 345, "damiensmail@mail.com");
   
         // Verify that the new object has the correct properties
