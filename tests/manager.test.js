@@ -2,7 +2,7 @@ const Employee = require('./lib/employee.js');
 const Manager = require('./lib/manager.js');
 
 describe("Manager", () => {
-    // Test for all new case github when initializing a new Engineer object
+    // Test for our new case officeNumber when initializing a new Manager object
     describe("Initialization", () => {
       it("should create an object with a name, id, email, and role if provided valid arguments", () => {
         const manager = new Manager("Damien", 345, "damiensmail@mail.com", 678);
@@ -17,6 +17,13 @@ describe("Manager", () => {
       it("should throw an error if not provided an office number", () => {
         const cb = () => new Employee("Damien", 345, "damiensmail@mail.com");
         const err = new Error("Expected parameter 'officeNumber' not found");
+        expect(cb).toThrowError(err);
+      });
+
+      it("should throw an error if 'officeNumber' is not a number", () => {
+        const cb = () => new Child("Damien", 345, "damiensmail@mail.com", "678");
+        const err = new Error("Expected parameter 'officeNumber' to be a non-negative number");
+  
         expect(cb).toThrowError(err);
       });
     })
