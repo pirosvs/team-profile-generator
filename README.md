@@ -6,7 +6,7 @@ Purpose:
 - in WHAT fucking context is this useful. honestly
 
 Skills:
-- JS, node, inquirer, fs
+- JS, node, inquirer, fs, jest tests
 
 ## Credits
 
