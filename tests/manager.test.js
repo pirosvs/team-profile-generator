@@ -1,5 +1,5 @@
-const Employee = require('./lib/employee.js');
-const Manager = require('./lib/manager.js');
+const Employee = require('../lib/employee.js');
+const Manager = require('../lib/manager.js');
 
 describe("Manager", () => {
     // Test for our new case officeNumber when initializing a new Manager object

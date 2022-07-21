@@ -1,5 +1,5 @@
-const Employee = require('./lib/employee.js');
-const Intern = require('./lib/intern.js');
+const Employee = require('../lib/employee.js');
+const Intern = require('../lib/intern.js');
 
 describe("Intern", () => {
     // Test for our new case school when initializing a new Intern object

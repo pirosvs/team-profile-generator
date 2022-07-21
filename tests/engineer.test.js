@@ -1,5 +1,5 @@
-const Employee = require('./lib/employee.js');
-const Engineer = require('./lib/engineer.js');
+const Employee = require('../lib/employee.js');
+const Engineer = require('../lib/engineer.js');
 
 describe("Engineer", () => {
     // Test for all new case github when initializing a new Engineer object

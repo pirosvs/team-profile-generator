@@ -1,4 +1,4 @@
-const Employee = require('./lib/employee.js');
+const Employee = require('../lib/employee.js');
 
 describe("Employee", () => {
     // Test for all use cases when initializing a new Employee object
