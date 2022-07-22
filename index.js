@@ -1,4 +1,5 @@
 // Require inquirer and fs so that we can ask questions in the terminal and create a file
+// Require our class files and file to generate HTML document with data returned from user input
 const fs = require('fs');
 const inquirer = require('inquirer');
 const Employee = require('./lib/employee.js');
@@ -37,12 +38,6 @@ const managerQuestions = [
         name: "officeNum",
         message: "Please enter manager office number"
     },
-
-    {
-        type: "input",
-        name: "continue",
-        message: "Would you like to add another team member?"
-    }
 ];
 
 // engineer’s name, ID, email, and GitHub username
@@ -70,12 +65,6 @@ const engineerQuestions = [
         name: "github",
         message: "Please enter github username"
     },
-
-    {
-        type: "input",
-        name: "continue",
-        message: "Would you like to add another team member?"
-    }
 ];
 
 // intern’s name, ID, email, and school
@@ -105,6 +94,7 @@ const internQuestions = [
     },
 ]
 
+// Question to check if user would like to add another employee
 const continueQuestion = [
     {
         type: "confirm",
@@ -113,6 +103,7 @@ const continueQuestion = [
     }
 ];
 
+// Question to check which type of employee user would like to add
 const selectMember = [
     {
         type: "list",
@@ -122,6 +113,7 @@ const selectMember = [
     }
 ];
 
+// Choose which set of questions should be used based on which type user selects
 function chooseQuestionSet (data) {
     if (data.selectMember == "Engineer") {
         inquirer.prompt(engineerQuestions);
@@ -130,6 +122,7 @@ function chooseQuestionSet (data) {
     }
 }
 
+// Check if the user wants to add another employee
 const chooseContinue = (data) => {
     if (data.continue == true) {
         var addAnotherEmployee = true;
@@ -144,9 +137,10 @@ const chooseContinue = (data) => {
     // }
 }
 
+// Empty array to store the created employees
 var allEmployees = []
 
-// create employee from our data
+// Create employee from our data
 function addManager(data)
 {
     var manager = new Manager(data.name, data.id, data.email, data.officeNum);
@@ -163,14 +157,7 @@ function addEngineer(data) {
     allEmployees.push(engineer);
 }
 
-// Writes file
-function writeToFile() {
-    const generateHTMLContent = generateHTML(allEmployees);
-    fs.writeFile(`team-index.html`, generateHTMLContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created readme.md!')
-    );
-}
-
+// Create the type of employee based on role returned
 function addEmployeeByRole(data) {
     getRole();
     if (Employee.role == "Intern") {
@@ -180,6 +167,14 @@ function addEmployeeByRole(data) {
     } else if (Employee.role == "Manager") {
         addManager();
     }
+}
+
+// Writes file
+function writeToFile() {
+    const generateHTMLContent = generateHTML(allEmployees);
+    fs.writeFile(`team-index.html`, generateHTMLContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created readme.md!')
+    );
 }
 
 function getsAllEmployeesFromUser(data)
