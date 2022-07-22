@@ -14,10 +14,19 @@ describe("Engineer", () => {
         expect(engineer.github).toEqual("pirosvs");
       });
 
-      it("should throw an error if not provided a github username", () => {
-        const cb = () => new Employee("Damien", 345, "damiensmail@mail.com");
-        const err = new Error("Expected parameter 'github' to be a non-empty string");
-        expect(cb).toThrowError(err);
-      });
-    })
+//       it("should throw an error if not provided a github username", () => {
+//         // const engineer = new Engineer("Damien", 345, "damiensmail@mail.com");
+//         const cb = () => new Engineer("Damien", 345, "damiensmail@mail.com");
+//         const err = new Error("Expected parameter 'github' to be a non-empty string");
+//         expect(engineer).toThrowError(err);
+//       });
+//     })
+
+//     describe("getGithub", () => {
+//       it("should return the github username", () => {
+//         const engineer = new Engineer("Damien", 345, "damiensmail@mail.com", "pirosvs");
+//         const returnedGithub = getGithub(engineer);
+//         expect(returnedSchool).toEqual("pirosvs");
+//       });
+      })
 })

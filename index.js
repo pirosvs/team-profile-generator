@@ -149,6 +149,7 @@ function getsAllEmployeesFromUser()
    
    while(addAnotherEmployee == true) {
        // ask the user for what kind of employee
+    //    for value of allEmployees (generate cards)
         // inquirer.prompt(employeeSelect)
         // if (response === "engineer") {inquirer.prompt(engineerQuestions)}
        // do the inquirer and add the employee to our list
@@ -172,6 +173,12 @@ function init()
   .prompt(managerQuestions)
     //   anything that needs response data needs to be w/ the then
     // 19 ist demo format nodejs to use as an example of how to order things for this here
+    // .then((response) => {
+    //     console.log(response)
+    //     response.confirm === response.password
+    //       ? console.log('Success!')
+    //       : console.log('You forgot your password already?!')
+    //   }
   .then(addManagerToAllEmployees){}
 
   getsAllEmployeesFromUser()

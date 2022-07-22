@@ -14,19 +14,26 @@ describe("Intern", () => {
         expect(intern.school).toEqual("Mills College");
       });
 
-      // test methods
+//       // Not required below
+//       it("should throw an error if not provided a school", () => {
+//         const cb = () => new Intern("Damien", 345, "damiensmail@mail.com");
+//         const err = new Error("Expected parameter 'school' to be a non-empty string`");
+//         expect(cb).toThrowError(err);
+//       });
 
-      // Not required below
-      // it("should throw an error if not provided an school", () => {
-      //   const intern = new Intern("Damien", 345, "damiensmail@mail.com");
-      //   const err = new Error("Expected parameter 'school' to be a non-empty string`");
-      //   expect(intern).toThrowError(err);
-      // });
+//       it("should throw an error if 'school' is not a string", () => {
+//         const cb = () => new Intern("Damien", 345, "damiensmail@mail.com", 45);
+//         const err = new Error("Expected parameter 'school' to be a non-empty string");
+//         expect(cb).toThrowError(err);
+//       });
+//     })
+})
 
-      // it("should throw an error if 'school' is not a string", () => {
-      //   const intern = new Intern("Damien", 345, "damiensmail@mail.com", 45);
-      //   const err = new Error("Expected parameter 'school' to be a non-empty string");
-      //   expect(intern).toThrowError(err);
-      // });
-    })
+// describe("getSchool", () => {
+//   // test methods
+//   it("should return the school provided when getSchool is called", () => {
+//     const intern = new Intern("Damien", 345, "damiensmail@mail.com", "Mills College");
+//     const returnedSchool = intern.school;
+//     expect(returnedSchool).toEqual("Mills College");
+//   });
 })
