@@ -20,13 +20,11 @@ describe("Engineer", () => {
 //         const err = new Error("Expected parameter 'github' to be a non-empty string");
 //         expect(engineer).toThrowError(err);
 //       });
-//     })
+    })
 
-//     describe("getGithub", () => {
-//       it("should return the github username", () => {
-//         const engineer = new Engineer("Damien", 345, "damiensmail@mail.com", "pirosvs");
-//         const returnedGithub = getGithub(engineer);
-//         expect(returnedSchool).toEqual("pirosvs");
-//       });
+    describe("getGithub", () => {
+      it("should return the github username", () => {
+        expect(new Engineer("Damien", 345, "damiensmail@mail.com", "pirosvs").getGithub()).toBe("pirosvs");
+      });
       })
 })

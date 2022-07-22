@@ -26,14 +26,12 @@ describe("Intern", () => {
         const err = new Error("Expected parameter 'school' to be a non-empty string");
         expect(cb).toThrowError(err);
       });
-//     })
+    })
 })
 
-// describe("getSchool", () => {
-//   // test methods
-//   it("should return the school provided when getSchool is called", () => {
-//     const intern = new Intern("Damien", 345, "damiensmail@mail.com", "Mills College");
-//     const returnedSchool = intern.school;
-//     expect(returnedSchool).toEqual("Mills College");
-//   });
+describe("getSchool", () => {
+  // test methods
+  it("should return the school provided when getSchool is called", () => {
+    expect(new Intern("Damien", 345, "damiensmail@mail.com", "Mills College").getSchool()).toBe("Mills College");
+  });
 })
