@@ -35,3 +35,9 @@ describe("getSchool", () => {
     expect(new Intern("Damien", 345, "damiensmail@mail.com", "Mills College").getSchool()).toBe("Mills College");
   });
 })
+
+describe("getRole", () => {
+  it("should return the role", () => {
+    expect(new Intern("Damien", 345, "damiensmail@mail.com", "Mills Colleger").getRole()).toBe("Intern");
+  });
+})

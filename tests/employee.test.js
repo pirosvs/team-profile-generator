@@ -64,8 +64,8 @@ describe("getEmail", () => {
   });
 })
 
-// describe("getRole", () => {
-//   it("should return the role", () => {
-//     expect(new Employee("Damien", 345, "damiensmail@mail.com").getGithub()).toBe("employee");
-//   });
-// })
+describe("getRole", () => {
+  it("should return the role", () => {
+    expect(new Employee("Damien", 345, "damiensmail@mail.com").getRole()).toBe("Employee");
+  });
+})

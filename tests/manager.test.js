@@ -20,4 +20,10 @@ describe("Manager", () => {
 //         expect(manager).toThrowError(err);
 //       });
     })
+
+  describe("getRole", () => {
+    it("should return the role", () => {
+      expect(new Manager("Damien", 345, "damiensmail@mail.com", 54).getRole()).toBe("Manager");
+    });
+  })
 })

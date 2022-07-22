@@ -27,4 +27,10 @@ describe("Engineer", () => {
         expect(new Engineer("Damien", 345, "damiensmail@mail.com", "pirosvs").getGithub()).toBe("pirosvs");
       });
       })
+  
+  describe("getRole", () => {
+    it("should return the role", () => {
+      expect(new Engineer("Damien", 345, "damiensmail@mail.com", "pirosvs").getRole()).toBe("Engineer");
+    });
+  })
 })
