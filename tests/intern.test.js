@@ -21,11 +21,11 @@ describe("Intern", () => {
 //         expect(cb).toThrowError(err);
 //       });
 
-//       it("should throw an error if 'school' is not a string", () => {
-//         const cb = () => new Intern("Damien", 345, "damiensmail@mail.com", 45);
-//         const err = new Error("Expected parameter 'school' to be a non-empty string");
-//         expect(cb).toThrowError(err);
-//       });
+      it("should throw an error if 'school' is not a string", () => {
+        const cb = () => new Intern("Damien", 345, "damiensmail@mail.com", 45);
+        const err = new Error("Expected parameter 'school' to be a non-empty string");
+        expect(cb).toThrowError(err);
+      });
 //     })
 })
 
