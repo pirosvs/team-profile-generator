@@ -17,7 +17,7 @@ return `<!DOCTYPE html>
     
   <body>
   `
-
+// 
   + createEmployeeCards(employeeList) +
 
   `
@@ -33,11 +33,68 @@ function createEmployeeCards(employeeList)
 
   for(var employee in employeeList)
   {
-    var employeeCard = `<p>` + employee.name + `</p>`
+    var employeeCard = 
+`<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${getName()}</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${emailLink(data)}</li>
+      <li class="list-group-item">${getEmail()}</li>
+      <li class="list-group-item">${getSpecialInfo(data)}</li>
+    </ul>
+  </div>
+</div>
+`
     resultHTML += employeeCard
   }
 
   return resultHTML
+}
+
+function makeGithubLink(data) {
+  var githubLink = `https://github.com/${engineer.github}`;
+}
+
+function makeEmailLink(data) {
+  var emailLink = `<a href="mailto:${employee.email}"></a>`;
+}
+
+function internCard(data) {
+  var internCard = 
+  `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${intern.name}</h5>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">${intern.id}</li>
+    <li class="list-group-item">${emailLink(data)}</li>
+    <li class="list-group-item">${getSchool()}</li>
+  </ul>
+  </div>
+  </div>
+  `
+}
+
+function engineerCard(data) {
+`<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${getName()}</h5>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item">${emailLink(data)}</li>
+    <li class="list-group-item">${getEmail()}</li>
+      <li class="list-group-item">${getGithub()}</li>
+    </ul>
+  </div>
+</div>
+`
+}
+
+function getSpecialInfo (data) {
+  if (intern) {
+    getSchool();
+  } else if (engineer) {
+    getGithub();
+    makeGithubLink();
+  }
 }
 
 module.exports = generateHTML;
