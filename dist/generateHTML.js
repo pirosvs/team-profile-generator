@@ -17,7 +17,6 @@ return `<!DOCTYPE html>
     
   <body>
   `
-// 
   + createEmployeeCards(employeeList) +
 
   `
