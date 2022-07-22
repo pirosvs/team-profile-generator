@@ -113,29 +113,29 @@ const selectMember = [
     }
 ];
 
-// Choose which set of questions should be used based on which type user selects
-function chooseQuestionSet (data) {
-    if (data.selectMember == "Engineer") {
-        inquirer.prompt(engineerQuestions);
-    } else if (response.member.val == "Intern") {
-        inquirer.prompt(internQuestions);
+function promptByEmployeeType(userType)
+{
+    if (userType == "Engineer") {
+        return inquirer.prompt(engineerQuestions);
+    } else if (userType == "Intern") {
+        return inquirer.prompt(internQuestions);
     }
 }
 
-// Check if the user wants to add another employee
-const chooseContinue = (data) => {
-    if (data.continue == true) {
-        var addAnotherEmployee = true;
-        inquirer.prompt(selectMember)
-        .then((response) => chooseQuestionSet())
-    } else if (data.continue == false) {
-        var addAnotherEmployee = false;
-        return;
-    }
-    //  else {
-    //     inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
-    // }
-}
+// // Check if the user wants to add another employee
+// const chooseContinue = (data) => {
+//     if (data.continue == true) {
+//         var addAnotherEmployee = true;
+//         inquirer.prompt(selectMember)
+//         .then((response) => chooseQuestionSet())
+//     } else if (data.continue == false) {
+//         var addAnotherEmployee = false;
+//         return;
+//     }
+//     //  else {
+//     //     inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
+//     // }
+// }
 
 // Empty array to store the created employees
 var allEmployees = []
@@ -148,24 +148,25 @@ function addManager(data)
 }
 
 function addIntern(data) {
-    var intern = new Intern(data.name, data.id, data.email, data.school);
+    var intern = new Intern(data.internName, data.internId, data.internEmail, data.schoolName);
     allEmployees.push(intern);
 }
 
 function addEngineer(data) {
+    // TODO: make the fields below (e.g. data.name) match whats in the questions
     var engineer = new Engineer(data.name, data.id, data.email, data.github);
     allEmployees.push(engineer);
 }
 
 // Create the type of employee based on role returned
 function addEmployeeByRole(data) {
-    getRole();
-    if (Employee.role == "Intern") {
-        addIntern();
-    } else if (Employee.role == "Engineer") {
-        addEngineer();
-    } else if (Employee.role == "Manager") {
-        addManager();
+    // getRole();
+    if (data.internId != null) {
+        addIntern(data);
+    } else if (data.engineerId != null) {
+        addEngineer(data);
+    } else if (data.id != null) {
+        addManager(data);
     }
 }
 
@@ -177,17 +178,21 @@ function writeToFile() {
     );
 }
 
-function getsAllEmployeesFromUser(data)
+function getNextUserData()
 {
    // ask the user if they want to enter another employe
-   inquirer.prompt(continueQuestion).then(chooseContinue())
+  // inquirer.prompt(continueQuestion).then(chooseContinue())
 
-   while(addAnotherEmployee == true) {
+  // while(addAnotherEmployee == true) {
     // ask the user for what kind of employee
-    // inquirer.prompt(selectMember)
-    // .then(chooseQuestionSet
-    // .then(addEmployeeByRole)
-    // .then(inquirer.prompt(continueQuestion))
+    return inquirer.prompt(selectMember)
+    .then(promptByEmployeeType)
+    .then(addEmployeeByRole)
+    .then(inquirer.prompt(continueQuestion))
+    .then((response) => {
+        if(response.confirm == true)
+            getNextUserData();
+      })
 
 
     //    for value of allEmployees (generate cards)
@@ -197,37 +202,22 @@ function getsAllEmployeesFromUser(data)
       // addEngineerToAllEmployees(response)
       // ask the user if they want to enter another employee
       // inquirer.prompt(continue)
-   }
-
-
-    return allEmployees;
+  // }
 }
 
 // Function to initialize app
 function init() 
 {
-  // Ask the user for manager info
-  // add that manager to the list
-  // 
-  //
   inquirer
   .prompt(managerQuestions)
     //   anything that needs response data needs to be w/ the then
     // 19 ist demo format nodejs to use as an example of how to order things for this here
-    // .then((response) => {
-    //     chooseContinue();     
-    //   })
-    // .then((response) => {
-        // getsAllEmployeesFromUser();
-    // })
-    // .then((response) => {
-        // writeToFile();
-    // })
-//   .then(chooseContinue(data)).then(getAllEmployeesFromUser()).then(writeToFile());
-    .then(addManagerToAllEmployees) //{}
-
-  getsAllEmployeesFromUser()
-  writeToFile()
+    .then((response) => {
+        addManager(response);
+    }).then(getsAllEmployeesFromUser) 
+    .then((response) => {
+        writeToFile();
+    })
 }
 
 // Function call to initialize app
