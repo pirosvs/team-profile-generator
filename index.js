@@ -170,7 +170,9 @@ function init()
   //
   inquirer
   .prompt(managerQuestions)
-  .then(addManagerToAllEmployees)
+    //   anything that needs response data needs to be w/ the then
+    // 19 ist demo format nodejs to use as an example of how to order things for this here
+  .then(addManagerToAllEmployees){}
 
   getsAllEmployeesFromUser()
   writeToFile()
