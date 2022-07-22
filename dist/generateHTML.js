@@ -1,7 +1,7 @@
-const Employee = require('./lib/employee.js');
-const Manager = require('./lib/manager.js');
-const Engineer = require('./lib/engineer.js');
-const Intern = require('./lib/intern.js');
+const Employee = require('../lib/employee.js');
+const Manager = require('../lib/manager.js');
+const Engineer = require('../lib/engineer.js');
+const Intern = require('../lib/intern.js');
 
 
 function generateHTML(employeeList) {

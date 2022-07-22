@@ -39,6 +39,7 @@ needs actual code
 ```
 
 ## Credits
+Credit to Maverick (mcavazos524) with AskBCS for helping with a issue requiring my files, and massive credit/ thanks to my housemate Lyra for helping me fix my functions and/ promises to make them chain correctly and allow them to actually work when I was/ have been deeply stuck on figuring out how to link them all to take data and loop properly.
 
 ## License
 This project falls under the MIT license.
