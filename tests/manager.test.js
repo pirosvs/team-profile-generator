@@ -19,12 +19,5 @@ describe("Manager", () => {
 //         const err = new Error("Expected parameter 'officeNumber' not found");
 //         expect(manager).toThrowError(err);
 //       });
-
-//       it("should throw an error if 'officeNumber' is not a number", () => {
-//         const manager = new Manager("Damien", 345, "damiensmail@mail.com", "678");
-//         const err = new Error("Expected parameter 'officeNumber' to be a non-negative number");
-  
-//         expect(manager).toThrowError(err);
-//       });
     })
 })
