@@ -6,6 +6,7 @@ const Manager = require('./lib/manager.js');
 const Engineer = require('./lib/engineer.js');
 const Intern = require('./lib/intern.js');
 const generateHTML = require('./dist/generateHTML.js');
+const { getRandomValues } = require('crypto');
 
 // var steve = new Employee("Steve", 12345, "steve@steve.org")
 // var name = steve.getName();
@@ -102,36 +103,64 @@ const internQuestions = [
         name: "schoolName",
         message: "Please enter intern school name"
     },
+]
 
+const continueQuestion = [
     {
-        type: "input",
+        type: "confirm",
         name: "continue",
         message: "Would you like to add another team member?"
     }
 ];
 
-const selectMember = () => {
-    if (data.continue.toLowerCase() == "yes") {
-        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add?", choices: "Engineer", "Intern"})
-        // if (response.member.val == "Engineer") {
-            // inquirer.prompt(engineerQuestions)
-        // } else if (response.member.val == "Intern") {
-            // inquirer.prompt(internQuestions)
-        // }
-    } else if (data.continue.toLowerCase() == "no") {
-        // exit
-    } else {
-        // inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
+const selectMember = [
+    {
+        type: "list",
+        name: "selectMember",
+        message: "What type of employee would you like to add (note: you can only have one manager)?",
+        choices: ["Engineer", "Intern"]
     }
+];
+
+function chooseQuestionSet (data) {
+    if (data.selectMember == "Engineer") {
+        inquirer.prompt(engineerQuestions);
+    } else if (response.member.val == "Intern") {
+        inquirer.prompt(internQuestions);
+    }
+}
+
+const chooseContinue = (data) => {
+    if (data.continue == true) {
+        var addAnotherEmployee = true;
+        inquirer.prompt(selectMember)
+        .then((response) => chooseQuestionSet())
+    } else if (data.continue == false) {
+        var addAnotherEmployee = false;
+        return;
+    }
+    //  else {
+    //     inquirer.prompt({ type: "list", name: "member", message: "Which type would you like to add? (accepts yes/ no)"})
+    // }
 }
 
 var allEmployees = []
 
 // create employee from our data
-function addManagerToAllEmployees(data)
+function addManager(data)
 {
     var manager = new Manager(data.name, data.id, data.email, data.officeNum);
     allEmployees.push(manager);
+}
+
+function addIntern(data) {
+    var intern = new Intern(data.name, data.id, data.email, data.school);
+    allEmployees.push(intern);
+}
+
+function addEngineer(data) {
+    var engineer = new Engineer(data.name, data.id, data.email, data.github);
+    allEmployees.push(engineer);
 }
 
 // Writes file
@@ -142,13 +171,30 @@ function writeToFile() {
     );
 }
 
-function getsAllEmployeesFromUser()
+function addEmployeeByRole(data) {
+    getRole();
+    if (Employee.role == "Intern") {
+        addIntern();
+    } else if (Employee.role == "Engineer") {
+        addEngineer();
+    } else if (Employee.role == "Manager") {
+        addManager();
+    }
+}
+
+function getsAllEmployeesFromUser(data)
 {
-   addAnotherEmployee = true
    // ask the user if they want to enter another employe
-   
+   inquirer.prompt(continueQuestion).then(chooseContinue())
+
    while(addAnotherEmployee == true) {
-       // ask the user for what kind of employee
+    // ask the user for what kind of employee
+    // inquirer.prompt(selectMember)
+    // .then(chooseQuestionSet
+    // .then(addEmployeeByRole)
+    // .then(inquirer.prompt(continueQuestion))
+
+
     //    for value of allEmployees (generate cards)
         // inquirer.prompt(employeeSelect)
         // if (response === "engineer") {inquirer.prompt(engineerQuestions)}
@@ -174,12 +220,16 @@ function init()
     //   anything that needs response data needs to be w/ the then
     // 19 ist demo format nodejs to use as an example of how to order things for this here
     // .then((response) => {
-    //     console.log(response)
-    //     response.confirm === response.password
-    //       ? console.log('Success!')
-    //       : console.log('You forgot your password already?!')
-    //   }
-  .then(addManagerToAllEmployees){}
+    //     chooseContinue();     
+    //   })
+    // .then((response) => {
+        // getsAllEmployeesFromUser();
+    // })
+    // .then((response) => {
+        // writeToFile();
+    // })
+//   .then(chooseContinue(data)).then(getAllEmployeesFromUser()).then(writeToFile());
+    .then(addManagerToAllEmployees) //{}
 
   getsAllEmployeesFromUser()
   writeToFile()
