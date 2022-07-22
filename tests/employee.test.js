@@ -51,3 +51,21 @@ describe("Employee", () => {
     //   });
     })
 });
+
+describe("getId", () => {
+  it("should get the provided id", () => {
+    expect(new Employee("Damien", 345, "damiensmail@mail.com", "pirosvs").getId()).toBe(345);
+  })
+})
+
+describe("getEmail", () => {
+  it("should return the email", () => {
+    expect(new Employee("Damien", 345, "damiensmail@mail.com").getEmail()).toBe("damiensmail@mail.com");
+  });
+})
+
+// describe("getRole", () => {
+//   it("should return the role", () => {
+//     expect(new Employee("Damien", 345, "damiensmail@mail.com").getGithub()).toBe("employee");
+//   });
+// })
