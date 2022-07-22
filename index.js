@@ -2,12 +2,12 @@
 // Require our class files and file to generate HTML document with data returned from user input
 const fs = require('fs');
 const inquirer = require('inquirer');
-const Employee = require('./lib/employee.js');
+const Employee = require('./lib/employee');
 const Manager = require('./lib/manager.js');
 const Engineer = require('./lib/engineer.js');
 const Intern = require('./lib/intern.js');
 const generateHTML = require('./dist/generateHTML.js');
-const { getRandomValues } = require('crypto');
+// const { getRandomValues } = require('crypto');
 
 // var steve = new Employee("Steve", 12345, "steve@steve.org")
 // var name = steve.getName();
